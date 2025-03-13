@@ -1,6 +1,7 @@
 package com.service;
 
-import com.dto.ProductDTO;
+import com.dto.ProductRequestDto;
+import com.dto.ProductResponseDto;
 import com.mapper.ProductMapper;
 import com.model.Product;
 import com.repository.ProductRepository;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,48 +21,35 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper;
 
     @Transactional(readOnly = true)
-    public List<ProductDTO> getAllProducts() {
-        return productRepository.findAll().stream()
-                .map(productMapper::toDto)
-                .collect(Collectors.toList());
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 
     @Transactional(readOnly = true)
-    public ProductDTO getProduct(Long id) {
+    public Product getProduct(Long id) {
         return productRepository.findById(id)
-                .map(productMapper::toDto)
                 .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id));
     }
 
     @Transactional
-    public ProductDTO createProduct(ProductDTO productDTO) {
-        Product product = productMapper.toEntity(productDTO);
-        Product savedProduct = productRepository.save(product);
-        return productMapper.toDto(savedProduct);
+    public Product createProduct(ProductRequestDto productDTO) {
+        return productRepository.save(productMapper.toEntity(productDTO));
     }
 
     @Transactional
-    public ProductDTO updateProduct(Long id, ProductDTO productDTO) {
-        Product existingProduct = productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id));
-        
-        productMapper.updateEntityFromDto(productDTO, existingProduct);
-        Product updatedProduct = productRepository.save(existingProduct);
-        return productMapper.toDto(updatedProduct);
+    public Product updateProduct(Long id, ProductRequestDto productDTO) {
+        Product target = getProduct(id);
+        Product source = productMapper.toEntity(productDTO);
+        return productRepository.save(productMapper.update(source, target));
     }
 
     @Transactional
     public void deleteProduct(Long id) {
-        if (!productRepository.existsById(id)) {
-            throw new EntityNotFoundException("Product not found with id: " + id);
-        }
-        productRepository.deleteById(id);
+        productRepository.delete(getProduct(id));
     }
 
     @Transactional(readOnly = true)
-    public List<ProductDTO> getLowStockProducts() {
-        return productRepository.findByStockQuantityLessThanEqual(5).stream()
-                .map(productMapper::toDto)
-                .collect(Collectors.toList());
+    public List<Product> getLowStockProducts() {
+        return new ArrayList<>(productRepository.findByStockQuantityLessThanEqual(5));
     }
 }
