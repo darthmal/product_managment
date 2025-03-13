@@ -1,11 +1,10 @@
 package com.service;
 
+import com.common.utils.EntityNotFoundException;
 import com.dto.ProductRequestDto;
-import com.dto.ProductResponseDto;
 import com.mapper.ProductMapper;
 import com.model.Product;
 import com.repository.ProductRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

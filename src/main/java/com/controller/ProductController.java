@@ -43,7 +43,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update an existing product")
-    public ResponseEntity<ProductResponseDto> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductRequestDto productDTO) {
+    public ResponseEntity<ProductResponseDto> updateProduct(@PathVariable Long id, @RequestBody ProductRequestDto productDTO) {
         return ResponseEntity.ok(productMapper.toDto(productService.updateProduct(id, productDTO)));
     }
 
