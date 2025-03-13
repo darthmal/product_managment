@@ -1,4 +1,4 @@
-package com.domain.project.common.utils;
+package com.common.utils;
 
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;

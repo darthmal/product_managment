@@ -1,6 +1,6 @@
 package com.dto;
 
-import com.domain.project.common.basestructure.dto.BaseResponseDto;
+import com.common.basestructure.dto.BaseResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

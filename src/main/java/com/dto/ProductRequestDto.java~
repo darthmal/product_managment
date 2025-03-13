@@ -1,6 +1,6 @@
-package com.dto;
+package projects.dto;
 
-import com.common.MandatoryField;
+import projects.common.MandatoryField;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;

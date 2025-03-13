@@ -1,4 +1,4 @@
-package com.domain.project.core.exception;
+package com.core.exception;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

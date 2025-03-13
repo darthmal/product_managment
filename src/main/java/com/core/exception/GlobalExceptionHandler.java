@@ -1,6 +1,6 @@
-package com.domain.project.core.exception;
+package com.core.exception;
 
-import com.domain.project.common.utils.EntityNotFoundException;
+import com.common.utils.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.domain.project.common;
+package com.common;
 
 
 import jakarta.validation.ConstraintValidator;

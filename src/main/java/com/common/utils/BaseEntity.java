@@ -1,6 +1,6 @@
-package com.domain.project.common.utils;
+package com.common.utils;
 
-import com.domain.project.common.MandatoryField;
+import com.common.MandatoryField;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;

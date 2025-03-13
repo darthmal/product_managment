@@ -1,4 +1,4 @@
-package com.domain.project.core.exception;
+package com.core.exception;
 
 public class UniqueConstraintViolationException extends RuntimeException {
     private String fieldName;

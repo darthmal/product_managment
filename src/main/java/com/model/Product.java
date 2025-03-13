@@ -1,7 +1,7 @@
 package com.model;
 
-import com.domain.project.common.MandatoryField;
-import com.domain.project.common.utils.BaseEntity;
+import com.common.MandatoryField;
+import com.common.utils.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
